@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class homework2_2 {
     public static void main(String[] args) {
@@ -107,5 +104,21 @@ class MyArrayList<AnyType> implements Iterable<AnyType> {
         }
         sb.append("]");
         return sb.toString();
+    }
+    public void removeAll(Iterable<? extends AnyType> items) {
+        Set<AnyType> toRemove = new HashSet<>();
+        for (AnyType item : items) {
+            toRemove.add(item);
+        }
+        int newIndex = 0;
+        for (int i = 0; i < theSize; i++) {
+            if (!toRemove.contains(theItems[i])) {
+                theItems[newIndex++] = theItems[i];
+            }
+        }
+        for (int i = newIndex; i < theSize; i++) {
+            theItems[i] = null;
+        }
+        theSize = newIndex;
     }
 }
