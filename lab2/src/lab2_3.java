@@ -169,7 +169,6 @@ public class lab2_3 {
             }
             All brackets, braces and comments above are balanced.
             """;
-    
     /**
      * 定位测试文件：按候选相对路径依次探测（兼容不同工作目录配置），
      * 若均不存在则在首选位置自动创建样例文件，保证程序可独立运行。
@@ -190,7 +189,6 @@ public class lab2_3 {
         System.out.println("(未找到测试文件，已自动生成 " + created + ")");
         return created;
     }
-    
     /** 同时用两种栈跑一段文本并打印对比结果与耗时 */
     private static void runCase(String title, String text) {
         long t0 = System.nanoTime();
@@ -209,15 +207,12 @@ public class lab2_3 {
         System.out.println("  两种实现结论一致: " + (r1.balance == r2.balance));
         System.out.println();
     }
-    
     public static void main(String[] args) throws IOException {
         // ---------- 主测试：读取真实文件并检查（题目正文要求） ----------
         Path file = locateTestFile();
         String content = Files.readString(file, StandardCharsets.UTF_8); // UTF-8 一次读入全文
         System.out.println("======== 文件检查：" + file + " ========");
         runCase("文件内容", content);
-        
-        // ---------- 补充用例：覆盖各类不平衡形态，用于报告 Chapter 3 ----------
         System.out.println("======== 内置补充用例 ========");
         runCase("平衡：混合括号嵌套", "a*(b+c)-{d/[e,f]}");
         runCase("不平衡：缺少右括号", "(a+b");
